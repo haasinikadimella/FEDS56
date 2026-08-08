@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>ECommerce</title>
+</head>
+<body background="images/Background.jpg">
+<table border="1" width="100%" cellpadding="10" cellspacing="0">
+     <tr bgcolor="#0D47A1">
+          <!--HEADER -->
+     <td colspan="4">
+     <table width="100%">
+          <tr>
+               <td width="25%">
+                    <img src="fimg1.jpg" width="200" height="100">
+               </td>
+               <td width="50%" align="center">
+                    <input type="text" size="40" placeholder="Search Products">
+                    <input type="submit" value="Search">
+                </td>
+               <td width="25%" align="center">
+                    <font color="white">
+                            <b>Login</b> ||
+                            <b>Register</b> ||
+                            <b>Cart (0)</b>
+                    </font>
+               </td>
+
+          </tr>
+
+     </table>
+     </tr>
+     <tr>
+          <!--CATEGORIES -->
+
+     </tr>
+     <tr>
+          <!--BANNER -->
+
+     </tr>
+     <tr>
+          <!--MOVING OFFERS -->
+
+     </tr>
+
+
+
+     <tr>
+          <!--FOOTER -->
+          <tr bgcolor="#0D47A1">
+          <!--HEADER -->
+     <td colspan="4">
+     <table width="100%">
+          <tr>
+               <td width="25%">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.2651276439196!2d80.62035802520425!3d16.441857079354506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f0a2a073957d%3A0xe79d66babc83e470!2sK%20L%20UNIVERSITY%2C%20Vaddeswaram%2C%20Andhra%20Pradesh%20522501!5e1!3m2!1sen!2sin!4v1785913580051!5m2!1sen!2sin" width="300" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+               </td>
+               <td width="50%" align="center">
+                    <font color="white">
+                            <h2>KLECommerce</h2> 
+                            Home||
+                            Products||
+                            About us||
+                            Contat us||
+                            Help
+                            <br>
+                            Copyright@2026 KLECommerce
+                    </font>
+               
+                </td>
+               <td width="25%" align="center">
+                   
+                 <input type="text" size="30" placeholder="Coustomer Reviwe">
+                  <input type="text" size="30" placeholder="Coustomer name ">
+                   <input type="text" size="30" placeholder="contact details">
+                    <input type="submit" value="submit">
+               </td>
+
+          </tr>
+
+     </tr>
+
+
+
+</table>
+
+     
+</body>
+</html>
