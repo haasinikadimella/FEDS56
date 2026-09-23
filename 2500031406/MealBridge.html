@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MealBridge - Community Food Sharing</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5faf7;
+            color: #26352a;
+            scroll-behavior: smooth;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 65px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 8px #0001;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #087f3f;
+        }
+
+        .logo span {
+            color: #f28b30;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #087f3f;
+        }
+
+        .join-btn {
+            background: #087f3f;
+            color: white !important;
+            padding: 9px 18px;
+            border-radius: 6px;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            padding: 50px 8%;
+
+            background:
+                linear-gradient(90deg, #ffffff 30%, #ffffffaa),
+                url("https://images.unsplash.com/photo-1547592180-85f173990554")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 570px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            color: #17452c;
+        }
+
+        .hero h1 span {
+            color: #087f3f;
+        }
+
+        .hero p {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .btn {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .green {
+            background: #087f3f;
+            color: white;
+        }
+
+        .orange {
+            background: #f28b30;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 35px 8%;
+            background: white;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat h2 {
+            color: #087f3f;
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: #666;
+        }
+
+
+        /* ================= SECTION ================= */
+
+        section {
+            padding: 60px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title h2 {
+            font-size: 32px;
+            color: #17452c;
+        }
+
+        .title p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 12px #00000012;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #17452c;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px #0002;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #087f3f;
+        }
+
+        .submit {
+            width: 100%;
+            background: #087f3f;
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit:hover {
+            background: #066b35;
+        }
+
+
+        /* ================= FOOD LIST ================= */
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        .search-box button {
+            padding: 12px 20px;
+            border: none;
+            background: #087f3f;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px #0001;
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 15px;
+        }
+
+        .food-info h3 {
+            color: #17452c;
+            margin-bottom: 10px;
+        }
+
+        .food-info p {
+            margin: 6px 0;
+            color: #555;
+        }
+
+        .available {
+            color: #087f3f !important;
+            font-weight: bold;
+        }
+
+        .request-btn {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background: #087f3f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .request-btn:hover {
+            background: #066b35;
+        }
+
+
+        /* ================= DASHBOARD ================= */
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .dash-card {
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #0001;
+            text-align: center;
+        }
+
+        .dash-card .dash-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .dash-card h2 {
+            color: #087f3f;
+            margin-bottom: 8px;
+            font-size: 30px;
+        }
+
+        .dash-card p {
+            color: #666;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status-container {
+            max-width: 900px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .status {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px #0001;
+        }
+
+        .status-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .status h3 {
+            color: #17452c;
+            margin-bottom: 5px;
+        }
+
+        .status p {
+            color: #666;
+            font-size: 14px;
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0001;
+            text-align: center;
+        }
+
+        .about-box p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #17452c;
+            color: white;
+            padding: 40px 8%;
+            text-align: center;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 1000px) {
+
+            .food-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .status-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .food-list,
+            .dashboard,
+            .status-container,
+            .cards,
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        Meal<span>Bridge</span>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#donate">Donate</a>
+        </li>
+
+        <li>
+            <a href="#find">Find Meals</a>
+        </li>
+
+        <li>
+            <a href="#request">Request</a>
+        </li>
+
+        <li>
+            <a href="#dashboard">Dashboard</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+    <a href="#donate" class="join-btn">
+        Join Us
+    </a>
+
+</nav>
+
+
+<!-- ================= HOME ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Share Meals<br>
+            <span>Save Food</span><br>
+            Support Lives
+        </h1>
+
+        <p>
+            MealBridge connects surplus food with people,
+            volunteers and organizations that need it.
+            Together we can reduce food waste and support
+            our communities.
+        </p>
+
+        <button
+            class="btn green"
+            onclick="goTo('donate')">
+
+            Donate Food
+
+        </button>
+
+        <button
+            class="btn orange"
+            onclick="goTo('find')">
+
+            Find Meals
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <h2 id="mealCount">
+            1500+
+        </h2>
+
+        <p>
+            Meals Shared
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>
+            400+
+        </h2>
+
+        <p>
+            Food Donors
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>
+            50+
+        </h2>
+
+        <p>
+            NGOs & Volunteers
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2>
+            12+
+        </h2>
+
+        <p>
+            Cities Reached
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section>
+
+    <div class="title">
+
+        <h2>
+            How MealBridge Works
+        </h2>
+
+        <p>
+            Simple steps to share surplus food.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icon">
+                🍱
+            </div>
+
+            <h3>
+                Donate Food
+            </h3>
+
+            <p>
+                Individuals, restaurants, hotels and
+                event organizers can list their surplus food.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔎
+            </div>
+
+            <h3>
+                Find Meals
+            </h3>
+
+            <p>
+                Volunteers and organizations can search
+                for available meals based on location.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🤝
+            </div>
+
+            <h3>
+                Connect & Share
+            </h3>
+
+            <p>
+                Requested meals can be collected and
+                distributed to people who need them.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DONATE FOOD ================= -->
+
+<section id="donate">
+
+    <div class="title">
+
+        <h2>
+            Donate Surplus Food
+        </h2>
+
+        <p>
+            Share your extra food with the community.
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+
+        <div class="form-group">
+
+            <label>
+                Donor Name
+            </label>
+
+            <input
+                type="text"
+                id="donor"
+                placeholder="Enter your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Food / Meal Name
+            </label>
+
+            <input
+                type="text"
+                id="food"
+                placeholder="Example: Vegetable Rice">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Food Category
+            </label>
+
+            <select id="category">
+
+                <option>
+                    Vegetarian
+                </option>
+
+                <option>
+                    Non-Vegetarian
+                </option>
+
+                <option>
+                    Bakery
+                </option>
+
+                <option>
+                    Fruits
+                </option>
+
+                <option>
+                    Snacks
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                placeholder="Number of meals">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Pickup Location
+            </label>
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Enter location">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Additional Information
+            </label>
+
+            <textarea
+                id="details"
+                placeholder="Enter food details">
+            </textarea>
+
+        </div>
+
+
+        <button
+            class="submit"
+            onclick="donateFood()">
+
+            Donate Food
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FIND FOOD ================= -->
+
+<section id="find">
+
+    <div class="title">
+
+        <h2>
+            Find Available Meals
+        </h2>
+
+        <p>
+            Search and request surplus food.
+        </p>
+
+    </div>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search food or location...">
+
+        <button onclick="searchFood()">
+            Search
+        </button>
+
+    </div>
+
+
+    <div class="food-list" id="foodList">
+
+
+        <!-- FOOD CARD 1 -->
+
+        <div
+            class="food-card"
+            data-name="vegetable rice vijayawada vegetarian">
+
+            <img
+                src="https://images.unsplash.com/photo-1601050690597-df0568f70950"
+                alt="Vegetable Rice">
+
+            <div class="food-info">
+
+                <h3>
+                    Vegetable Rice
+                </h3>
+
+                <p>
+                    🍃 Vegetarian
+                </p>
+
+                <p>
+                    📍 Vijayawada
+                </p>
+
+                <p>
+                    🍽️ 30 Meals
+                </p>
+
+                <p class="available">
+                    ● Available
+                </p>
+
+                <button
+                    class="request-btn"
+                    onclick="requestFood('Vegetable Rice')">
+
+                    Request Meal
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD CARD 2 -->
+
+        <div
+            class="food-card"
+            data-name="idly sambar guntur vegetarian">
+
+            <img
+                src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb"
+                alt="Idly Sambar">
+
+            <div class="food-info">
+
+                <h3>
+                    Idly & Sambar
+                </h3>
+
+                <p>
+                    🍃 Vegetarian
+                </p>
+
+                <p>
+                    📍 Guntur
+                </p>
+
+                <p>
+                    🍽️ 20 Meals
+                </p>
+
+                <p class="available">
+                    ● Available
+                </p>
+
+                <button
+                    class="request-btn"
+                    onclick="requestFood('Idly & Sambar')">
+
+                    Request Meal
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD CARD 3 -->
+
+        <div
+            class="food-card"
+            data-name="chapati curry mangalagiri vegetarian">
+
+            <img
+                src="https://images.unsplash.com/photo-1626132647523-66f5bf380027"
+                alt="Chapati Curry">
+
+            <div class="food-info">
+
+                <h3>
+                    Chapati & Curry
+                </h3>
+
+                <p>
+                    🍃 Vegetarian
+                </p>
+
+                <p>
+                    📍 Mangalagiri
+                </p>
+
+                <p>
+                    🍽️ 25 Meals
+                </p>
+
+                <p class="available">
+                    ● Available
+                </p>
+
+                <button
+                    class="request-btn"
+                    onclick="requestFood('Chapati & Curry')">
+
+                    Request Meal
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD CARD 4 -->
+
+        <div
+            class="food-card"
+            data-name="bread fruits tadepalli bakery">
+
+            <img
+                src="https://images.unsplash.com/photo-1509440159596-0249088772ff"
+                alt="Bread and Fruits">
+
+            <div class="food-info">
+
+                <h3>
+                    Bread & Fruits
+                </h3>
+
+                <p>
+                    🍎 Bakery / Fruits
+                </p>
+
+                <p>
+                    📍 Tadepalli
+                </p>
+
+                <p>
+                    🍽️ 15 Packets
+                </p>
+
+                <p class="available">
+                    ● Available
+                </p>
+
+                <button
+                    class="request-btn"
+                    onclick="requestFood('Bread & Fruits')">
+
+                    Request Meal
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REQUEST FOOD ================= -->
+
+<section id="request">
+
+    <div class="title">
+
+        <h2>
+            Request Food
+        </h2>
+
+        <p>
+            Submit your food requirement.
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+
+        <div class="form-group">
+
+            <label>
+                Your Name
+            </label>
+
+            <input
+                type="text"
+                id="requestName"
+                placeholder="Enter your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Organization
+            </label>
+
+            <input
+                type="text"
+                id="organization"
+                placeholder="NGO / Organization">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter phone number">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Required Quantity
+            </label>
+
+            <input
+                type="number"
+                id="requiredQuantity"
+                placeholder="Number of meals">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Purpose
+            </label>
+
+            <textarea
+                id="purpose"
+                placeholder="Explain your requirement">
+            </textarea>
+
+        </div>
+
+
+        <button
+            class="submit"
+            onclick="submitRequest()">
+
+            Submit Request
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATUS TRACKING ================= -->
+
+<section>
+
+    <div class="title">
+
+        <h2>
+            Meal Status Tracking
+        </h2>
+
+        <p>
+            Track food from donation to distribution.
+        </p>
+
+    </div>
+
+
+    <div class="status-container">
+
+
+        <div class="status">
+
+            <div class="status-icon">
+                🟢
+            </div>
+
+            <h3>
+                Available
+            </h3>
+
+            <p>
+                Food is ready for request.
+            </p>
+
+        </div>
+
+
+        <div class="status">
+
+            <div class="status-icon">
+                🟡
+            </div>
+
+            <h3>
+                Requested
+            </h3>
+
+            <p>
+                A request has been submitted.
+            </p>
+
+        </div>
+
+
+        <div class="status">
+
+            <div class="status-icon">
+                🔵
+            </div>
+
+            <h3>
+                Collected
+            </h3>
+
+            <p>
+                Food has been collected.
+            </p>
+
+        </div>
+
+
+        <div class="status">
+
+            <div class="status-icon">
+                🟢
+            </div>
+
+            <h3>
+                Distributed
+            </h3>
+
+            <p>
+                Food has reached the community.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard">
+
+    <div class="title">
+
+        <h2>
+            MealBridge Dashboard
+        </h2>
+
+        <p>
+            Current donation and distribution overview.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard">
+
+
+        <div class="dash-card">
+
+            <div class="dash-icon">
+                🍱
+            </div>
+
+            <h2 id="totalDonations">
+                25
+            </h2>
+
+            <p>
+                Total Donations
+            </p>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <div class="dash-icon">
+                🟢
+            </div>
+
+            <h2>
+                8
+            </h2>
+
+            <p>
+                Available Meals
+            </p>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <div class="dash-icon">
+                📦
+            </div>
+
+            <h2>
+                7
+            </h2>
+
+            <p>
+                Collected
+            </p>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <div class="dash-icon">
+                🤝
+            </div>
+
+            <h2>
+                10
+            </h2>
+
+            <p>
+                Distributed
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+    <div class="title">
+
+        <h2>
+            About MealBridge
+        </h2>
+
+        <p>
+            Connecting surplus food with people who need it.
+        </p>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <p>
+            MealBridge is a community-focused food sharing
+            platform designed to reduce avoidable food waste.
+        </p>
+
+        <p>
+            Restaurants, households, hotels, institutions and
+            event organizers can donate surplus edible food.
+        </p>
+
+        <p>
+            NGOs and volunteers can find available food,
+            submit requests, collect meals and distribute them
+            to people in need.
+        </p>
+
+        <p>
+            The platform promotes responsible food consumption
+            and encourages communities to share surplus meals.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+    <div class="title">
+
+        <h2>
+            Contact MealBridge
+        </h2>
+
+        <p>
+            Have a question or suggestion?
+        </p>
+
+    </div>
+
+
+    <div class="form-container">
+
+
+        <div class="form-group">
+
+            <label>
+                Name
+            </label>
+
+            <input
+                type="text"
+                id="contactName"
+                placeholder="Your name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="contactEmail"
+                placeholder="Your email">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Message
+            </label>
+
+            <textarea
+                id="contactMessage"
+                placeholder="Write your message">
+            </textarea>
+
+        </div>
+
+
+        <button
+            class="submit"
+            onclick="sendMessage()">
+
+            Send Message
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h2>
+        MealBridge
+    </h2>
+
+    <p>
+        Share Meals • Save Food • Support Lives
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 MealBridge. Community Food Sharing Portal.
+    </p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+    /* ================= NAVIGATION ================= */
+
+    function goTo(id) {
+
+        document
+            .getElementById(id)
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* ================= DONATE FOOD ================= */
+
+    function donateFood() {
+
+        let donor =
+            document.getElementById("donor").value.trim();
+
+        let food =
+            document.getElementById("food").value.trim();
+
+        let quantity =
+            document.getElementById("quantity").value.trim();
+
+        let location =
+            document.getElementById("location").value.trim();
+
+
+        if (
+            donor === "" ||
+            food === "" ||
+            quantity === "" ||
+            location === ""
+        ) {
+
+            alert(
+                "Please fill all required donation details."
+            );
+
+            return;
+        }
+
+
+        let donations =
+            JSON.parse(
+                localStorage.getItem("mealBridgeDonations")
+            ) || [];
+
+
+        let newDonation = {
+
+            donor: donor,
+
+            food: food,
+
+            category:
+                document.getElementById("category").value,
+
+            quantity: quantity,
+
+            location: location,
+
+            details:
+                document.getElementById("details").value,
+
+            status: "Available"
+
+        };
+
+
+        donations.push(newDonation);
+
+
+        localStorage.setItem(
+            "mealBridgeDonations",
+            JSON.stringify(donations)
+        );
+
+
+        document.getElementById("totalDonations")
+            .innerText = donations.length + 25;
+
+
+        alert(
+            "Thank you " +
+            donor +
+            "! Your food donation has been submitted successfully."
+        );
+
+
+        document.getElementById("donor").value = "";
+        document.getElementById("food").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("location").value = "";
+        document.getElementById("details").value = "";
+
+    }
+
+
+    /* ================= REQUEST FOOD ================= */
+
+    function requestFood(foodName) {
+
+        alert(
+            "Your request for " +
+            foodName +
+            " has been submitted successfully!"
+        );
+
+        goTo("request");
+
+    }
+
+
+    /* ================= REQUEST FORM ================= */
+
+    function submitRequest() {
+
+        let name =
+            document.getElementById("requestName")
+                .value.trim();
+
+        let organization =
+            document.getElementById("organization")
+                .value.trim();
+
+        let phone =
+            document.getElementById("phone")
+                .value.trim();
+
+        let quantity =
+            document.getElementById("requiredQuantity")
+                .value.trim();
+
+
+        if (
+            name === "" ||
+            organization === "" ||
+            phone === "" ||
+            quantity === ""
+        ) {
+
+            alert(
+                "Please complete all required fields."
+            );
+
+            return;
+        }
+
+
+        let requests =
+            JSON.parse(
+                localStorage.getItem("mealBridgeRequests")
+            ) || [];
+
+
+        requests.push({
+
+            name: name,
+
+            organization: organization,
+
+            phone: phone,
+
+            quantity: quantity,
+
+            purpose:
+                document.getElementById("purpose").value,
+
+            status: "Requested"
+
+        });
+
+
+        localStorage.setItem(
+            "mealBridgeRequests",
+            JSON.stringify(requests)
+        );
+
+
+        alert(
+            "Food request submitted successfully!"
+        );
+
+
+        document.getElementById("requestName").value = "";
+        document.getElementById("organization").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("requiredQuantity").value = "";
+        document.getElementById("purpose").value = "";
+
+    }
+
+
+    /* ================= SEARCH FOOD ================= */
+
+    function searchFood() {
+
+        let search =
+            document.getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+        let cards =
+            document.querySelectorAll(".food-card");
+
+
+        cards.forEach(function(card) {
+
+            let data =
+                card
+                    .getAttribute("data-name")
+                    .toLowerCase();
+
+
+            if (data.includes(search)) {
+
+                card.style.display = "block";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+
+
+    /* ================= CONTACT ================= */
+
+    function sendMessage() {
+
+        let name =
+            document.getElementById("contactName")
+                .value.trim();
+
+        let email =
+            document.getElementById("contactEmail")
+                .value.trim();
+
+        let message =
+            document.getElementById("contactMessage")
+                .value.trim();
+
+
+        if (
+            name === "" ||
+            email === "" ||
+            message === ""
+        ) {
+
+            alert(
+                "Please fill in all contact details."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Thank you " +
+            name +
+            "! Your message has been sent successfully."
+        );
+
+
+        document.getElementById("contactName").value = "";
+        document.getElementById("contactEmail").value = "";
+        document.getElementById("contactMessage").value = "";
+
+    }
+
+
+    /* ================= LOAD SAVED DATA ================= */
+
+    window.onload = function() {
+
+        let donations =
+            JSON.parse(
+                localStorage.getItem("mealBridgeDonations")
+            ) || [];
+
+
+        if (donations.length > 0) {
+
+            document.getElementById("totalDonations")
+                .innerText =
+                donations.length + 25;
+
+        }
+
+    };
+
+
+</script>
+
+
+</body>
+
+</html>
