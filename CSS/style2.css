@@ -1,0 +1,52 @@
+style2.css
+	.container {
+    	display: grid;
+    	grid-template-areas: 
+      		"header header header"
+      		"sidebar main main"
+      		"footer footer footer";
+    	grid-template-rows: 60px 1fr 60px;
+   	grid-template-columns: 200px 1fr 1fr;
+    	height: 90vh;
+    	width:100vw;
+  	}
+  	.header {
+    	grid-area: header;
+    	background: #333;
+    	color: white;
+    	display: flex;
+    	align-items: center;
+    	padding: 0 20px;
+  	}
+
+  	.sidebar {
+    	grid-area: sidebar;
+    	background: #f4f4f4;
+    	padding: 20px;
+  	}
+  	.footer {
+    	grid-area: footer;
+    	background: #333;
+    	color: white;
+    	text-align: center;
+   	 line-height: 60px;
+  	}
+  	.main {
+    	grid-area: main;
+    	padding: 20px;
+    	display: grid;
+    	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    	gap: 20px;
+  	}
+
+  	.product {
+    	border: 1px solid #ddd;
+    	padding: 10px;
+    	text-align: center;
+  	}
+
+  	.product img {
+    	width: 100%;
+    	height: auto;
+  	}
+

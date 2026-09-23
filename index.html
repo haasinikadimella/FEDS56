@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventEase | Event Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Event<span>Ease</span></div>
+  <nav>
+    <button class="nav-btn" data-view="home">Home</button>
+    <button class="nav-btn" data-view="events">Events</button>
+    <button class="nav-btn" data-view="notifications">Notifications</button>
+    <button class="nav-btn" data-view="feedback">Feedback</button>
+    <button class="nav-btn admin-only" data-view="admin">Admin</button>
+    <button class="nav-btn" data-view="login" id="loginNav">Login</button>
+    <button class="nav-btn hidden" data-view="profile" id="userNav">Profile</button>
+    <button class="nav-btn hidden" id="logoutBtn">Logout</button>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  <p>EventEase — HTML, CSS & JavaScript only | Demo data stored in browser LocalStorage</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

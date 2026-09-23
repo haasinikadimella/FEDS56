@@ -1,0 +1,32 @@
+*{
+    background-color:lightpink;
+}
+ h1{
+            color:brown;
+            font-size: 60px;
+            text-align: center;
+            font-family:'Times New Roman';
+        }
+p{
+            color:cadetblue;
+            font-size: 40px;
+            text-align: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+.box{
+    background-color: gray; padding:20px;
+}
+.box1{
+    background-color: cornsilk; padding:20px;
+}
+#header{
+    background-color: paleturquoise;
+    color: black;
+}
+h3,h4{
+    background-color: darkgreen;
+    color: cornsilk;
+}
+ p1{
+    color: mediumpurple;
+}
